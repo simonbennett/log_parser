@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/analyser"
+
+parser = Analyser::LogParser.new(ARGV.first)
+report = Analyser::Report.new(parser)
+
+puts "\nPages by pageviews\n\n"
+
+report.visits.each do |visit|
+  puts "#{visit[:path]} #{visit[:count]} visits"
+end
+
+puts "\nPages by unique pageviews\n\n"
+
+report.unique_visits.each do |unique_visit|
+  puts "#{unique_visit[:path]} #{unique_visit[:count]} unique views"
+end
